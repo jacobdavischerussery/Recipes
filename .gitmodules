@@ -1,0 +1,3 @@
+[submodule "Recipes/Modules/Networking"]
+	path = Recipes/Modules/Networking
+	url = https://github.com/jacobdavischerussery/Recipes.git
