@@ -202,8 +202,6 @@
 			mainGroup = F29954C22D5487DB0043775C;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				F29954F82D548B930043775C /* XCLocalSwiftPackageReference "Modules/RecipesNetworking" */,
-				F29954FC2D548FEC0043775C /* XCLocalSwiftPackageReference "Modules/Dependencies" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F29954CC2D5487DB0043775C /* Products */;
@@ -562,17 +560,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		F29954F82D548B930043775C /* XCLocalSwiftPackageReference "Modules/RecipesNetworking" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Modules/RecipesNetworking;
-		};
-		F29954FC2D548FEC0043775C /* XCLocalSwiftPackageReference "Modules/Dependencies" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Modules/Dependencies;
-		};
-/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		F29954F92D548B930043775C /* RecipesNetworking */ = {
