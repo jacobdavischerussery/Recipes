@@ -4,33 +4,32 @@
 import PackageDescription
 
 let package = Package(
-    name: "Networking",
+    name: "RecipesFoundation",
     platforms: [
         .iOS(.v16)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "Networking",
-            targets: ["Networking"]),
+            name: "RecipesFoundation",
+            targets: ["RecipesFoundation"]),
     ],
     dependencies: [
         .package(path: "../Dependencies"),
+        .package(path: "../Networking"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "Networking",
+            name: "RecipesFoundation",
             dependencies: [
-                "Dependencies"
+                "Dependencies",
+                "Networking"
             ]),
         .testTarget(
-            name: "NetworkingTests",
-            dependencies: ["Networking"],
-            resources: [
-                .process("Resources")
-            ]
+            name: "RecipesFoundationTests",
+            dependencies: ["RecipesFoundation"]
         ),
     ]
 )
