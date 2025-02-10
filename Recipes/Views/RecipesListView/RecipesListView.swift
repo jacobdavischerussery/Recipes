@@ -17,11 +17,26 @@ struct RecipesListView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                List(viewModel.recipes, id: \.id) { recipe in
-                    rowContent(recipe: recipe)
+                switch viewModel.viewState {
+                case .idle:
+                    retryView
+                case .loading:
+                    ProgressView("Loading Recipes....")
+                case .loaded:
+                    List(viewModel.recipes, id: \.id) { recipe in
+                        rowContent(recipe: recipe)
+                    }
+                    .listStyle(PlainListStyle())
+                    .background(Color.white)
+                    .animation(.easeInOut, value: viewModel.recipes)
+                case .error(let message):
+                    VStack {
+                        Text("Error: \(message)")
+                            .foregroundColor(.red)
+                        retryView
+                    }
                 }
-                .listStyle(PlainListStyle())
-                .background(Color.white)
+                retryView
             }
             .navigationTitle(Resources.Common.title)
             .onAppear {
@@ -32,15 +47,18 @@ struct RecipesListView: View {
         }
     }
     
+    var retryView: some View {
+        Button("Refresh") {
+            Task {
+                await viewModel.getRecipes()
+            }
+        }
+    }
+    
     func rowContent(recipe: Recipe) -> some View {
         Group {
             if let imageUrl = recipe.photoUrlLarge {
                 CachedAsyncImage(url: imageUrl)
-                    .cornerRadius(8)
-                    .overlay(
-                        ColorAssets.imageOveray
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                    )
                     .overlay(
                         VStack(alignment: .leading, spacing: 10) {
                             Text(recipe.name)
@@ -58,7 +76,6 @@ struct RecipesListView: View {
             }
         }
         .listRowSeparator(.hidden)
-        
     }
 }
 

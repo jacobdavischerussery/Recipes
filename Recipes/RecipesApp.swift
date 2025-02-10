@@ -7,19 +7,26 @@
 
 import SwiftUI
 
-@main
-struct RecipesInitializer {
-    static func main() {
+class RecipesInitializer: ObservableObject {
+    @Published var isLoaded = false
+    
+    init() {
         DependencyConfigurator.registerDependencies()
-        
-        RecipesApp.main()
+        isLoaded = true
     }
 }
 
+@main
 struct RecipesApp: App {
+    @StateObject var recipeInitializer = RecipesInitializer()
+    
     var body: some Scene {
         WindowGroup {
-            RecipesListView()
+            if recipeInitializer.isLoaded {
+                RecipesListView()
+            } else {
+                ProgressView()
+            }
         }
     }
 }

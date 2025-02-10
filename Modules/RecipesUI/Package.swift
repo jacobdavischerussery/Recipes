@@ -18,6 +18,7 @@ let package = Package(
         .package(path: "../RecipesFoundation"),
         .package(path: "../Dependencies"),
         .package(path: "../Networking"),
+        .package(path: "../Resources"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -27,7 +28,9 @@ let package = Package(
             dependencies: [
                 "RecipesFoundation",
                 "Dependencies",
-                "Networking"]),
+                "Networking",
+                .product(name: "RecipeAssets", package: "Resources")
+            ]),
         .testTarget(
             name: "RecipesUITests",
             dependencies: ["RecipesUI"]

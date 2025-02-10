@@ -9,7 +9,7 @@ public struct RecipesResponse: Codable, Sendable {
     public let recipes: [Recipe]
 }
 
-public struct Recipe: Codable, Sendable {
+public struct Recipe: Codable, Sendable, Equatable {
     public let cuisine: String
     public let name: String
     public let photoUrlLarge: String?
